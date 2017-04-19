@@ -9,6 +9,27 @@ Placeholder repository for `Identity and Authorization` solutions for BMEG, G2P,
 * docker-kafka-pixy - first draft of [kafka proxy](docker-kafka-pixy/README.md)
 
 
+##### Install
+
+go install github.com/ohsu-comp-bio/thales
+
+##### Development
+
+Checkout code:
+```
+mkdir thales && cd thales
+curl -O https://raw.githubusercontent.com/ohsu-comp-bio/thales/dev/contrib/Makefile
+make download
+```
+
+Build
+
+```
+make
+```
+
+
+
 ##### Who was `Thales` ?
 Thales of Miletus (ca 624 - 546 BC)
 
