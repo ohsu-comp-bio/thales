@@ -11,3 +11,8 @@ download:
 	go get -d github.com/ohsu-comp-bio/thales
 	go get github.com/golang/protobuf/protoc-gen-go
 	go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/
+	go get -v go.pedge.io/protoeasy/cmd/protoeasy
+	go get github.com/gogo/protobuf/protoc-gen-gogofast
+	
+proto:	
+	protoeasy --gogo --grpc --grpc-gateway src/github.com/ohsu-comp-bio/thales/

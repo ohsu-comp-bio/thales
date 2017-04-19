@@ -2,7 +2,7 @@
 syntax = "proto3";
 
 
-package topicdb;
+package thales;
 
 
 import "google/api/annotations.proto";
@@ -28,8 +28,10 @@ message TopicList {
 message TopicQuery {
   string message_type = 1;
   string source = 2;
-  map<string, string> tags = 2;  
+  map<string, string> tags = 3;
 }
+
+message MessageTypeResponse {}
 
 service TopicDB {
   rpc AddTopic(Topic) returns (TopicName) {
@@ -49,7 +51,13 @@ service TopicDB {
     option (google.api.http) = {
       post: "/v1/thales/search"
       body: "*"
-    }
+    };
+  }
+  
+  rpc PutMessageType(google.protobuf.DescriptorProto) returns (MessageTypeResponse) {
+    option (google.api.http) = {
+      post: "/v1/thales/messages"
+    };
   }
   
 };
@@ -77,9 +85,9 @@ message SubResponse {
 service Streams {
   rpc Produce(PubRequest) returns (PubResponse) {
     option (google.api.http) = {
-      post: "/v1/thales/topics/{name}"
+      post: "/v1/thales/topics/{topic}"
       body: "*"
-    }
+    };
   }
   
   rpc Subscribe(SubRequest) returns (stream SubResponse) {
@@ -89,6 +97,6 @@ service Streams {
       additional_bindings {
         get: "/v1/thales/stream/{topic}/{offset}"
       }    
-    }
+    };
   }
 };
